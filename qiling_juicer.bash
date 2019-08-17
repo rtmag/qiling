@@ -1,8 +1,8 @@
 #!/bin/bash 
   
-#PBS -P Project_Name_of_Job  
+#PBS -P qilling_hic  
 #PBS -j oe 
-#PBS -N Job_Name 
+#PBS -N juicer 
 
 #PBS -q parallel12 
 #PBS -l select=1:ncpus=12:mpiprocs=12:mem=40GB 
@@ -30,9 +30,9 @@ np=$( cat  ${PBS_NODEFILE} |wc -l );  ### get number of CPUs, do not change
 
 ##--- Put your exec/application commands below ---  
 ##--- For example: 
-source /etc/profile.d/rec_modules.sh 
-module load xe_2015;  module list 
-
-mpirun -f ${PBS_NODEFILE} ./a.out 
+bash /hpctmp/e0056363/juicer/scripts/juicer.sh \
+-y /root/qiling/juicer/restriction_sites/mm10_noScaffold_Arima.txt \
+-z /root/qiling/juicer/references/mm10_noScaffold.fasta \
+-p /hpctmp/e0056363/juicer/references/mm10.chrom.sizes_noScaffold
 
 ##--- END HERE --- 
