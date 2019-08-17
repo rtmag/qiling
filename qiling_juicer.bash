@@ -33,6 +33,6 @@ np=$( cat  ${PBS_NODEFILE} |wc -l );  ### get number of CPUs, do not change
 bash /hpctmp/e0056363/juicer/scripts/juicer.sh \
 -y /root/qiling/juicer/restriction_sites/mm10_noScaffold_Arima.txt \
 -z /root/qiling/juicer/references/mm10_noScaffold.fasta \
--p /hpctmp/e0056363/juicer/references/mm10.chrom.sizes_noScaffold
+-p /hpctmp/e0056363/juicer/references/mm10.chrom.sizes_noScaffold &> juicer_run.log
 
 ##--- END HERE --- 
