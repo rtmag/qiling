@@ -1,0 +1,7 @@
+cp -r ~/juicer-master/ /hpctmp2/e0056363
+cd /hpctmp2/e0056363/juicer-master
+ln -s PBS/scripts scripts
+ln -s /hpctmp/e0056363/juicer/fastq/ /hpctmp2/e0056363/juicer-master/fastq
+ln -s /hpctmp/e0056363/juicer/references/ /hpctmp2/e0056363/juicer-master/references
+ln -s /hpctmp/e0056363/juicer/restriction_sites/ /hpctmp2/e0056363/juicer-master/restriction_sites
+ln -s ~/juicer_tools.1.9.9_jcuda.0.8.jar /hpctmp2/e0056363/juicer-master/scripts/juicer_tools.jar
