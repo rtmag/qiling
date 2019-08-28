@@ -43,15 +43,8 @@ ln -s /root/qiling/juicer/references/ ~/qiling_juicer/references
 ln -s /root/qiling/fastq/ ~/qiling_juicer/fastq
 ln -s /root/qiling/juicer/restriction_sites/ ~/qiling_juicer/restriction_sites
 
-bash  ~/qiling_juicer/scripts/juicer.sh \
--y  ~/qiling_juicer/restriction_sites/mm10_noScaffold_Arima.txt \
--z  ~/qiling_juicer/references/mm10_noScaffold.fasta \
--D /root/juicer_qiling/
--p  ~/qiling_juicer/references/mm10.chrom.sizes_noScaffold &> juicer_run.log
-
-bash /root/juicer_qiling/scripts/juicer.sh \
--g mm10_noScaffold \
--y /root/juicer_qiling/restriction_sites/mm10_noScaffold_Arima.txt \
--z /root/juicer_qiling/references/mm10_noScaffold.fasta \
--D /root/juicer_qiling/ \
+bash /root/qiling_juicer/scripts/juicer.sh \
+-y /root/qiling_juicer/restriction_sites/mm10_noScaffold_Arima.txt \
+-z /root/qiling_juicer/references/mm10_noScaffold.fasta \
+-D /root/qiling_juicer/ \
 -p /root/resources/mm10.chrom.sizes_noScaffold &> juicer_run.log
