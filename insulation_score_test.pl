@@ -26,7 +26,7 @@ ix2 <- seq(25000, ((mat_size-1)*25000)+25000, by=25000)
 labels<-paste0("bin",1:dim(matrix)[1],"|mm10|",chr,":",ix1,"-",ix2)
 rownames(matrix) <- labels
 colnames(matrix) <- labels
-write.table(matrix,"chr19_observed_NONE_25kb_D_hicPROformat.txt",quote=FALSE,sep="\t")
+write.table(matrix,"chr19_observed_NONE_25kb_D_hicPROformat.txt",quote=FALSE,sep="\t",col.names=NA,row.names=TRUE)
 
 x=read.table("chr19_observed_NONE_25kb_D_hicPROformat.txt",sep="\t",header=TRUE,row.names=1)
 dim(x)
