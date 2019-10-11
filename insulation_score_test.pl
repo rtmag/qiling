@@ -28,12 +28,14 @@ rownames(matrix) <- labels
 colnames(matrix) <- labels
 write.table(matrix,"chr19_observed_NONE_25kb_D_hicPROformat.txt",quote=FALSE,sep="\t",col.names=NA,row.names=TRUE)
 
-x=read.table("chr19_observed_NONE_25kb_D_hicPROformat.txt",sep="\t",header=TRUE,row.names=1)
-dim(x)
-
-x <- read.table( "N2-DpnII__10kb__chrX.matrix.txt" )
-
 ##################################################################################################################
 # Runing perl script
 perl /root/qiling/crane-nature-2015/scripts/matrix2insulation.pl -i chr19_observed_NONE_25kb_D_hicPROformat.txt
 
+
+
+
+x=read.table("chr19_observed_NONE_25kb_D_hicPROformat.txt",sep="\t",header=TRUE,row.names=1)
+dim(x)
+
+x <- read.table( "N2-DpnII__10kb__chrX.matrix.txt" )
