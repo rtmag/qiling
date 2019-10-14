@@ -17,25 +17,50 @@ perl Build.pl
 ##################################################################################################################
 # MODIFY juicer .hic dump in R
 # R
+# juicer_to_hicPro_denseMatrix.Rscript
 options(scipen=999)
-matrix <- read.table("chr19_observed_NONE_25kb_D.txt",header=FALSE)
-chr <- "chr19"
+args = commandArgs(trailingOnly=TRUE)
+
+denseMatrix <- as.character(args[1])
+resolution <- as.numeric(args[2])
+chr <- as.character(args[3])
+sampleID <- as.character(args[4])
+matrix <- read.table(denseMatrix,header=FALSE)
 mat_size = dim(matrix)[1]
-ix1 <- seq(0, (mat_size-1)*25000, by=25000)
-ix2 <- seq(25000, ((mat_size-1)*25000)+25000, by=25000)
+ix1 <- seq(0, (mat_size-1)*resolution, by=resolution)
+ix2 <- seq(resolution, ((mat_size-1)*resolution)+resolution, by=resolution)
 labels<-paste0("bin",1:dim(matrix)[1],"|mm10|",chr,":",ix1,"-",ix2)
 rownames(matrix) <- labels
 colnames(matrix) <- labels
-write.table(matrix,"chr19_observed_NONE_25kb_D_hicPROformat.txt",quote=FALSE,sep="\t",col.names=NA,row.names=TRUE)
+outfile <- paste0(sampleID,"_",chr,"_observed_NONE_25kb_D_hicPROformat.txt")
+write.table(matrix,outfile,quote=FALSE,sep="\t",col.names=NA,row.names=TRUE)
 
 ##################################################################################################################
 # Runing perl script
 perl /root/qiling/crane-nature-2015/scripts/matrix2insulation.pl -i chr19_observed_NONE_25kb_D_hicPROformat.txt
 
+##################################################################################################################
+
+
+for matrixFile in /root/qiling/dense_matrix/*/*;
+do ls -lh $matrixFile; 
+sampleOut=$(basename $matrixFile) ;
+chrN=${sampleOut//_observed_NONE_25kb_D.txt/} ;
+chrN=${chrN//WT_/} ;
+chrN=${chrN//KO_/} ;
+res=25000 ;
+sampleID="$(echo $sampleOut|perl -pe 's/\_.+//g')" ;
+Rscript juicer_to_hicPro_denseMatrix.R $matrixFile $res $chrN $sampleID;
+done
+
+for matrixFile in /root/qiling/hicProMatrix/*_hicPROformat.txt;
+do ls -lh $matrixFile; 
+perl /root/qiling/crane-nature-2015/scripts/matrix2insulation.pl -i $matrixFile ;
+done
 
 
 
-x=read.table("chr19_observed_NONE_25kb_D_hicPROformat.txt",sep="\t",header=TRUE,row.names=1)
-dim(x)
 
-x <- read.table( "N2-DpnII__10kb__chrX.matrix.txt" )
+
+
+
