@@ -38,6 +38,7 @@ write.table(matrix,outfile,quote=FALSE,sep="\t",col.names=NA,row.names=TRUE)
 ##################################################################################################################
 # Runing perl script
 perl /root/qiling/crane-nature-2015/scripts/matrix2insulation.pl -i chr19_observed_NONE_25kb_D_hicPROformat.txt
+perl /root/qiling/crane-nature-2015/scripts/matrix2insulation.pl -i /root/qiling/hicProMatrix/KO_19_observed_NONE_25kb_D_hicPROformat.txt
 
 ##################################################################################################################
 
