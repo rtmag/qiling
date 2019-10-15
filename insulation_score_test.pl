@@ -59,9 +59,18 @@ do ls -lh $matrixFile;
 perl /root/qiling/crane-nature-2015/scripts/matrix2insulation.pl -i $matrixFile ;
 done
 
+more mm10.chrom.sizes|perl -pe 's/chr//g' > mm10.chrom.sizes_noChr 
 
+cat KO_*.insulation.bedGraph|grep -v "track type=bedGraph name"|grep -v -w "NA" > ../KO_insulationScore_observed_NONE_25kb.bedGraph
+cat WT_*.insulation.bedGraph|grep -v "track type=bedGraph name"|grep -v -w "NA" > ../WT_insulationScore_observed_NONE_25kb.bedGraph
 
+more KO_insulationScore_observed_NONE_25kb.bedGraph|perl -pe "s/^/chr/g" > KO_insulationScore_observed_NONE_25kb_chrNames.bedGraph
+more WT_insulationScore_observed_NONE_25kb.bedGraph|perl -pe "s/^/chr/g" > WT_insulationScore_observed_NONE_25kb_chrNames.bedGraph
 
+/root/myPrograms/kentUtils/bin/bedGraphToBigWig KO_insulationScore_observed_NONE_25kb.bedGraph mm10.chrom.sizes_noChr KO_insulationScore_observed_NONE_25kb.bw &         #
+/root/myPrograms/kentUtils/bin/bedGraphToBigWig WT_insulationScore_observed_NONE_25kb.bedGraph mm10.chrom.sizes_noChr WT_insulationScore_observed_NONE_25kb.bw &         #
 
+/root/myPrograms/kentUtils/bin/bedGraphToBigWig KO_insulationScore_observed_NONE_25kb_chrNames.bedGraph mm10.chrom.sizes KO_insulationScore_observed_NONE_25kb_chrNames.bw &          #
+/root/myPrograms/kentUtils/bin/bedGraphToBigWig WT_insulationScore_observed_NONE_25kb_chrNames.bedGraph mm10.chrom.sizes WT_insulationScore_observed_NONE_25kb_chrNames.bw &          #
 
 
