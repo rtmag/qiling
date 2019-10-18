@@ -24,3 +24,19 @@ annotatePeaks.pl mycTFREGULOME_h2az_peaks.bed mm10 -annStats mycTFREGULOME_h2az_
  grep "Intergenic" mycTFREGULOME_h2az_peaks.anno|cut -f2,3,4,10,16 > Intergenic_mycTFREGULOME_h2az_peaks.bed
  grep "promoter-TSS" mycTFREGULOME_h2az_peaks.anno|cut -f2,3,4,10,16 > promoter_mycTFREGULOME_h2az_peaks.bed
  
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+library(TFregulomeR)
+my_peak <- read.delim("Intergenic_mycTFREGULOME_h2az_peaks.bed", sep = "\t", header = FALSE)
+
+mouse_TFBS = dataBrowser(species = "mouse") # or TFBSBrowser() before v1.2.0
+
+intersectMatrix_common <- intersectPeakMatrix(user_peak_list_x = list(my_peak),
+                                              peak_id_y = mouse_TFBS$ID, 
+                                              motif_only_for_id_y = TRUE)
+
+intersectPeakMatrixResult.test<-intersectPeakMatrixResult(intersectMatrix_common,angle_of_matrix="x",return_intersection_matrix=TRUE)
+intersectPeakMatrixResult.result <- intersectPeakMatrixResult.test$intersection_matrix
+sort(intersectPeakMatrixResult.result[1,])
