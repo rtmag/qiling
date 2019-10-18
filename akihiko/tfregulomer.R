@@ -21,6 +21,6 @@ bedtools intersect -a tfregulomeMYC.bed -b ../oriFiles/Ql_actH2AZ_neg_R1.bed > m
 
 annotatePeaks.pl mycTFREGULOME_h2az_peaks.bed mm10 -annStats mycTFREGULOME_h2az_peaks.annStats > mycTFREGULOME_h2az_peaks.anno 
 
- grep "Intergenic" mycTFREGULOME_h2az_peaks.anno|cut -f2,3,4,10,16 > mycTFREGULOME_h2az_peaks.bed
- grep "promoter-TSS" mycTFREGULOME_h2az_peaks.anno|cut -f2,3,4,10,16 > mycTFREGULOME_h2az_peaks.bed
+ grep "Intergenic" mycTFREGULOME_h2az_peaks.anno|cut -f2,3,4,10,16 > Intergenic_mycTFREGULOME_h2az_peaks.bed
+ grep "promoter-TSS" mycTFREGULOME_h2az_peaks.anno|cut -f2,3,4,10,16 > promoter_mycTFREGULOME_h2az_peaks.bed
  
