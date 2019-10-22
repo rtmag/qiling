@@ -16,14 +16,26 @@ perl -pe 's/HOLAMUNDO/\n/g'|cut -f1,2,3|awk -F"\t" {'print $1"\t"$2-50"\t"$3+50'
 bedtools merge -i - > tfregulomeMYC.bed
 
 # 54992 MYC peaks total, 20,746 peaks,  34,246 myc peaks in 
-
+###
 bedtools intersect -a tfregulomeMYC.bed -b ../oriFiles/Ql_actH2AZ_neg_R1.bed > mycTFREGULOME_h2az_peaks.bed
 
 annotatePeaks.pl mycTFREGULOME_h2az_peaks.bed mm10 -annStats mycTFREGULOME_h2az_peaks.annStats > mycTFREGULOME_h2az_peaks.anno 
 
  grep "Intergenic" mycTFREGULOME_h2az_peaks.anno|cut -f2,3,4,10,16 > Intergenic_mycTFREGULOME_h2az_peaks.bed
  grep "promoter-TSS" mycTFREGULOME_h2az_peaks.anno|cut -f2,3,4,10,16 > promoter_mycTFREGULOME_h2az_peaks.bed
- 
+###
+
+bedtools intersect -a ../oriFiles/Ql_actH2AZ_neg_R1.bed -b tfregulomeMYC.bed -v  > ach2az_-_mycTFREGULOME_peaks.bed
+
+annotatePeaks.pl ach2az_-_mycTFREGULOME_peaks.bed mm10 -annStats ach2az_-_mycTFREGULOME_peaks.annStats > ach2az_-_mycTFREGULOME_peaks.anno 
+annotatePeaks.pl ../oriFiles/Ql_actH2AZ_neg_R1.bed mm10 -annStats ach2az_peaks.annStats > ach2az_peaks.anno 
+##
+ grep "Intergenic" ach2az_-_mycTFREGULOME_peaks.anno|cut -f2,3,4,10,16 > Intergenic_ach2az_-_mycTFREGULOME_peaks.bed
+ grep "promoter-TSS" ach2az_-_mycTFREGULOME_peaks.anno|cut -f2,3,4,10,16 > promoter_ach2az_-_mycTFREGULOME_peaks.bed
+###
+ grep "Intergenic" ach2az_peaks.anno|cut -f2,3,4,10,16 > ach2az_peaks.bed
+ grep "promoter-TSS" ach2az_peaks.anno|cut -f2,3,4,10,16 > ach2az_peaks.bed
+
 #######################################################################################################################################
 #######################################################################################################################################
 #######################################################################################################################################
@@ -58,3 +70,20 @@ barplot( height=cobind[,2][1:20], names.arg=gsub("GTRD-EXP.+_MMU_","",cobind$dat
         horiz=FALSE,col="skyblue",ylim=c(0,40),ylab="Cobinding factors(%) of distal Myc + acH2AZ peaks")
 abline(h=0)
 dev.off()
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+#######################################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
