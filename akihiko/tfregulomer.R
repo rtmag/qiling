@@ -33,8 +33,8 @@ annotatePeaks.pl ../oriFiles/Ql_actH2AZ_neg_R1.bed mm10 -annStats ach2az_peaks.a
  grep "Intergenic" ach2az_-_mycTFREGULOME_peaks.anno|cut -f2,3,4,10,16 > Intergenic_ach2az_-_mycTFREGULOME_peaks.bed
  grep "promoter-TSS" ach2az_-_mycTFREGULOME_peaks.anno|cut -f2,3,4,10,16 > promoter_ach2az_-_mycTFREGULOME_peaks.bed
 ###
- grep "Intergenic" ach2az_peaks.anno|cut -f2,3,4,10,16 > ach2az_peaks.bed
- grep "promoter-TSS" ach2az_peaks.anno|cut -f2,3,4,10,16 > ach2az_peaks.bed
+ grep "Intergenic" ach2az_peaks.anno|cut -f2,3,4,10,16 > Intergenic_ach2az_peaks.bed
+ grep "promoter-TSS" ach2az_peaks.anno|cut -f2,3,4,10,16 > promoter_ach2az_peaks.bed
 
 #######################################################################################################################################
 #######################################################################################################################################
@@ -74,10 +74,35 @@ dev.off()
 #######################################################################################################################################
 #######################################################################################################################################
 #######################################################################################################################################
+cobinding_mypeak <- function(bedfile,outname){
+   my_peak <- read.delim(bedfile, sep = "\t", header = FALSE)
+   mouse_TFBS = dataBrowser(species = "mouse") # or TFBSBrowser() before v1.2.0
 
+   intersectMatrix_common <- intersectPeakMatrix(user_peak_list_x = list(my_peak),
+                                              peak_id_y = mouse_TFBS$ID, 
+                                              motif_only_for_id_y = TRUE)
 
+   intersectPeakMatrixResult.test<-intersectPeakMatrixResult(intersectMatrix_common,angle_of_matrix="x",return_intersection_matrix=TRUE)
+   intersectPeakMatrixResult.result <- intersectPeakMatrixResult.test$intersection_matrix
+   cobind <- rev(sort(intersectPeakMatrixResult.result[1,]))
+   cobind <- data.frame(dataset=names(cobind[1,]),cobinding=as.numeric(cobind[1,]))
+   write.csv(cobind,paste0(outname,".csv"))
+   
+   pdf(paste0(outname,".pdf"))
+   op <- par(mar=c(17,4,4,2)) # the 10 allows the names.arg below the barplot
+   barplot( height=cobind[,2][1:20], names.arg=gsub("GTRD-EXP.+_MMU_","",cobind$dataset[1:20],perl=TRUE),border=NA,las=2,
+        horiz=FALSE,col="skyblue",ylab=paste0("Cobinding factors(%) for ",dim(my_peak)[1]," peaks") )
+   abline(h=0)
+   dev.off()
+}
 
+cobinding_mypeak("promoter_ach2az_peaks.bed","promoter_ach2az_cobinding")
+cobinding_mypeak("Intergenic_ach2az_peaks.bed","distal_ach2az_cobinding")
 
+cobinding_mypeak("promoter_ach2az_-_mycTFREGULOME_peaks.bed","promoter_ach2az_-_myc_cobinding")
+cobinding_mypeak("Intergenic_ach2az_-_mycTFREGULOME_peaks.bed","distal_ach2az_-_myc_cobinding")
+
+cobinding_mypeak("promoter_mycTFREGULOME_h2az_peaks.bed","promoter_ach2az_+_myc_cobinding")
 
 
 
