@@ -104,12 +104,72 @@ cobinding_mypeak("Intergenic_ach2az_-_mycTFREGULOME_peaks.bed","distal_ach2az_-_
 
 cobinding_mypeak("promoter_mycTFREGULOME_h2az_peaks.bed","promoter_ach2az_+_myc_cobinding")
 cobinding_mypeak("Intergenic_mycTFREGULOME_h2az_peaks.bed","distal_ach2az_+_myc_cobinding")
+####################
 
 
+   pdf("distal_ach2az_+_myc_cobinding.pdf")
+cobind<- read.csv("distal_ach2az_+_myc_cobinding.csv",stringsAsFactors=FALSE,row.names=1)
+op <- par(mar=c(17,4,4,2)) # the 10 allows the names.arg below the barplot
+   barplot( height=cobind[,2][1:20], names.arg=gsub("GTRD-EXP.+_MMU_","",cobind$dataset[1:20],perl=TRUE),border=NA,las=2,
+        horiz=FALSE,col="skyblue",ylab=paste0("Cobinding factors(%) for distal acH2AZ+Myc",dim(my_peak)[1]," peaks"),
+           ylim=c(0,60),yaxt='n' )
+   abline(h=0)
+axis(2, at=seq(0, 60, by=10), labels = FALSE)
+text(y = seq(0, 60, by=10)+2,-1, labels = seq(0, 60, by=10), srt = 90, pos = 2, xpd = TRUE)
+   dev.off()
 
+   pdf("distal_ach2az_-_myc_cobinding.pdf")
+cobind<- read.csv("distal_ach2az_-_myc_cobinding.csv",stringsAsFactors=FALSE,row.names=1)
+op <- par(mar=c(17,4,4,2)) # the 10 allows the names.arg below the barplot
+   barplot( height=cobind[,2][1:20], names.arg=gsub("GTRD-EXP.+_MMU_","",cobind$dataset[1:20],perl=TRUE),border=NA,las=2,
+        horiz=FALSE,col="skyblue",ylab=paste0("Cobinding factors(%) for distal acH2AZ-Myc",dim(my_peak)[1]," peaks"),
+           ylim=c(0,60),yaxt='n' )
+   abline(h=0)
+axis(2, at=seq(0, 60, by=10), labels = FALSE)
+text(y = seq(0, 60, by=10)+2,-1, labels = seq(0, 60, by=10), srt = 90, pos = 2, xpd = TRUE)
+   dev.off()
 
+   pdf("distal_ach2az_cobinding.pdf")
+cobind<- read.csv("distal_ach2az_cobinding.csv",stringsAsFactors=FALSE,row.names=1)
+op <- par(mar=c(17,4,4,2)) # the 10 allows the names.arg below the barplot
+   barplot( height=cobind[,2][1:20], names.arg=gsub("GTRD-EXP.+_MMU_","",cobind$dataset[1:20],perl=TRUE),border=NA,las=2,
+        horiz=FALSE,col="skyblue",ylab=paste0("Cobinding factors(%) for distal acH2AZ",dim(my_peak)[1]," peaks"),
+           ylim=c(0,60),yaxt='n' )
+   abline(h=0)
+axis(2, at=seq(0, 60, by=10), labels = FALSE)
+text(y = seq(0, 60, by=10)+2,-1, labels = seq(0, 60, by=10), srt = 90, pos = 2, xpd = TRUE)
+   dev.off()
+########
 
+   pdf("promoter_ach2az_+_myc_cobinding.pdf")
+cobind<- read.csv("distal_ach2az_+_myc_cobinding.csv",stringsAsFactors=FALSE,row.names=1)
+op <- par(mar=c(17,4,4,2)) # the 10 allows the names.arg below the barplot
+   barplot( height=cobind[,2][1:20], names.arg=gsub("GTRD-EXP.+_MMU_","",cobind$dataset[1:20],perl=TRUE),border=NA,las=2,
+        horiz=FALSE,col="skyblue",ylab=paste0("Cobinding factors(%) for promoter acH2AZ+Myc",dim(my_peak)[1]," peaks"),
+           ylim=c(0,60),yaxt='n' )
+   abline(h=0)
+axis(2, at=seq(0, 60, by=10), labels = FALSE)
+text(y = seq(0, 60, by=10)+2,-1, labels = seq(0, 60, by=10), srt = 90, pos = 2, xpd = TRUE)
+   dev.off()
 
+   pdf("promoter_ach2az_-_myc_cobinding.pdf")
+cobind<- read.csv("distal_ach2az_-_myc_cobinding.csv",stringsAsFactors=FALSE,row.names=1)
+op <- par(mar=c(17,4,4,2)) # the 10 allows the names.arg below the barplot
+   barplot( height=cobind[,2][1:20], names.arg=gsub("GTRD-EXP.+_MMU_","",cobind$dataset[1:20],perl=TRUE),border=NA,las=2,
+        horiz=FALSE,col="skyblue",ylab=paste0("Cobinding factors(%) for promoter acH2AZ-Myc",dim(my_peak)[1]," peaks"),
+           ylim=c(0,60),yaxt='n' )
+   abline(h=0)
+axis(2, at=seq(0, 60, by=10), labels = FALSE)
+text(y = seq(0, 60, by=10)+2,-1, labels = seq(0, 60, by=10), srt = 90, pos = 2, xpd = TRUE)
+   dev.off()
 
-
-
+   pdf("promoter_ach2az_cobinding.pdf")
+cobind<- read.csv("distal_ach2az_cobinding.csv",stringsAsFactors=FALSE,row.names=1)
+op <- par(mar=c(17,4,4,2)) # the 10 allows the names.arg below the barplot
+   barplot( height=cobind[,2][1:20], names.arg=gsub("GTRD-EXP.+_MMU_","",cobind$dataset[1:20],perl=TRUE),border=NA,las=2,
+        horiz=FALSE,col="skyblue",ylab=paste0("Cobinding factors(%) for promoter acH2AZ",dim(my_peak)[1]," peaks"),
+           ylim=c(0,60),yaxt='n' )
+   abline(h=0)
+axis(2, at=seq(0, 60, by=10), labels = FALSE)
+text(y = seq(0, 60, by=10)+2,-1, labels = seq(0, 60, by=10), srt = 90, pos = 2, xpd = TRUE)
+   dev.off()
