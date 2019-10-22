@@ -37,6 +37,24 @@ intersectMatrix_common <- intersectPeakMatrix(user_peak_list_x = list(my_peak),
                                               peak_id_y = mouse_TFBS$ID, 
                                               motif_only_for_id_y = TRUE)
 
+intersectMatrix_common <- readRDS("TFREGULOMER_MYC+H2AZ_intersectMatrix_common.rds")
+
 intersectPeakMatrixResult.test<-intersectPeakMatrixResult(intersectMatrix_common,angle_of_matrix="x",return_intersection_matrix=TRUE)
+
 intersectPeakMatrixResult.result <- intersectPeakMatrixResult.test$intersection_matrix
-sort(intersectPeakMatrixResult.result[1,])
+
+cobind <- rev(sort(intersectPeakMatrixResult.result[1,]))
+
+cobind <- data.frame(dataset=names(cobind[1,]),cobinding=as.numeric(cobind[1,]))
+
+op <- par(mar=c(4,17,4,2)) # the 10 allows the names.arg below the barplot
+barplot( height=cobind[,2][1:20], names.arg=gsub("GTRD-EXP.+_MMU_","",cobind$dataset[1:20],perl=TRUE),border=NA,las=2,
+        horiz=TRUE,col="skyblue",xlim=c(0,40),xlab="Cobinding(%) of distal Myc peaks overlapping acH2AZ peaks")
+abline(h=0)
+
+pdf("akihiko_cobinding.pdf")
+op <- par(mar=c(17,4,4,2)) # the 10 allows the names.arg below the barplot
+barplot( height=cobind[,2][1:20], names.arg=gsub("GTRD-EXP.+_MMU_","",cobind$dataset[1:20],perl=TRUE),border=NA,las=2,
+        horiz=FALSE,col="skyblue",ylim=c(0,40),ylab="Cobinding factors(%) of distal Myc + acH2AZ peaks")
+abline(h=0)
+dev.off()
