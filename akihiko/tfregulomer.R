@@ -103,6 +103,7 @@ cobinding_mypeak("promoter_ach2az_-_mycTFREGULOME_peaks.bed","promoter_ach2az_-_
 cobinding_mypeak("Intergenic_ach2az_-_mycTFREGULOME_peaks.bed","distal_ach2az_-_myc_cobinding")
 
 cobinding_mypeak("promoter_mycTFREGULOME_h2az_peaks.bed","promoter_ach2az_+_myc_cobinding")
+cobinding_mypeak("Intergenic_mycTFREGULOME_h2az_peaks.bed","distal_ach2az_+_myc_cobinding")
 
 
 
