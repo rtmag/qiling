@@ -174,3 +174,38 @@ op <- par(mar=c(17,4,4,2)) # the 10 allows the names.arg below the barplot
 axis(2, at=seq(0, 40, by=10), labels = FALSE)
 text(y = seq(0, 40, by=10)+2,-1, labels = seq(0, 40, by=10), srt = 90, pos = 2, xpd = TRUE)
    dev.off()
+
+####################################################################################################################################
+####################################################################################################################################
+
+promoter_mycTFREGULOME_h2az_peaks.bed
+Intergenic_mycTFREGULOME_h2az_peaks.bed
+
+promoter_ach2az_peaks.bed
+Intergenic_ach2az_peaks.bed
+
+Intergenic_ach2az_-_mycTFREGULOME_peaks.bed
+promoter_ach2az_-_mycTFREGULOME_peaks.bed
+
+
+grep "Intergenic" mycTFREGULOME_h2az_peaks.anno|cut -f2,3,4,10,16 > Intergenic_mycTFREGULOME_h2az_peaks.bed
+ grep "promoter-TSS" mycTFREGULOME_h2az_peaks.anno|cut -f2,3,4,10,16 > promoter_mycTFREGULOME_h2az_peaks.bed
+###
+ grep "Intergenic" ach2az_-_mycTFREGULOME_peaks.anno|cut -f2,3,4,10,16 > Intergenic_ach2az_-_mycTFREGULOME_peaks.bed
+ grep "promoter-TSS" ach2az_-_mycTFREGULOME_peaks.anno|cut -f2,3,4,10,16 > promoter_ach2az_-_mycTFREGULOME_peaks.bed
+###
+ grep "Intergenic" ach2az_peaks.anno|cut -f2,3,4,10,16 > Intergenic_ach2az_peaks.bed
+ grep "promoter-TSS" ach2az_peaks.anno|cut -f2,3,4,10,16 > promoter_ach2az_peaks.bed
+
+########################################################################################################################
+########################################################################################################################
+########################################################################################################################
+grep "Intergenic" mycTFREGULOME_h2az_peaks.anno|cut -f16|sort|uniq > intergenic_mycTFREGULOME_h2az_peaks.genes.txt
+grep "promoter-TSS" mycTFREGULOME_h2az_peaks.anno|cut -f16|sort|uniq > promoter_mycTFREGULOME_h2az_peaks.genes.txt
+
+ grep "Intergenic" ach2az_-_mycTFREGULOME_peaks.anno|cut -f16|sort|uniq > Intergenic_ach2az_-_mycTFREGULOME_peaks.genes.txt
+ grep "promoter-TSS" ach2az_-_mycTFREGULOME_peaks.anno|cut -f16|sort|uniq > promoter_ach2az_-_mycTFREGULOME_peaks.genes.txt
+
+ grep "Intergenic" ach2az_peaks.anno|cut -f16|sort|uniq > Intergenic_ach2az_peaks.genes.txt
+ grep "promoter-TSS" ach2az_peaks.anno|cut -f16|sort|uniq> promoter_ach2az_peaks.genes.txt
+
