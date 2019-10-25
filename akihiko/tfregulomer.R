@@ -143,7 +143,7 @@ text(y = seq(0, 40, by=10)+2,-1, labels = seq(0, 40, by=10), srt = 90, pos = 2, 
 ########
 
    pdf("promoter_ach2az_+_myc_cobinding.pdf")
-cobind<- read.csv("distal_ach2az_+_myc_cobinding.csv",stringsAsFactors=FALSE,row.names=1)
+cobind<- read.csv("promoter_ach2az_+_myc_cobinding.csv",stringsAsFactors=FALSE,row.names=1)
 op <- par(mar=c(17,4,4,2)) # the 10 allows the names.arg below the barplot
    barplot( height=cobind[,2][1:20], names.arg=gsub("GTRD-EXP.+_MMU_","",cobind$dataset[1:20],perl=TRUE),border=NA,las=2,
         horiz=FALSE,col="skyblue",ylab=paste0("Cobinding factors(%) for promoter acH2AZ+Myc peaks"),
@@ -154,7 +154,7 @@ text(y = seq(0, 40, by=10)+2,-1, labels = seq(0, 40, by=10), srt = 90, pos = 2, 
    dev.off()
 
    pdf("promoter_ach2az_-_myc_cobinding.pdf")
-cobind<- read.csv("distal_ach2az_-_myc_cobinding.csv",stringsAsFactors=FALSE,row.names=1)
+cobind<- read.csv("promoter_ach2az_-_myc_cobinding.csv",stringsAsFactors=FALSE,row.names=1)
 op <- par(mar=c(17,4,4,2)) # the 10 allows the names.arg below the barplot
    barplot( height=cobind[,2][1:20], names.arg=gsub("GTRD-EXP.+_MMU_","",cobind$dataset[1:20],perl=TRUE),border=NA,las=2,
         horiz=FALSE,col="skyblue",ylab=paste0("Cobinding factors(%) for promoter acH2AZ-Myc peaks"),
