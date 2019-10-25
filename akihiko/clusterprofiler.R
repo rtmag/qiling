@@ -158,7 +158,7 @@ dev.off()
 
 #  H2 - MYC
 
-pdf("pie_dist_acH2AZ-MYC.pdf")
+pdf("pie_dist_acH2AZ-MYC.pdf",width=12)
 res=read.table(pipe("more ach2az_-_mycTFREGULOME_peaks.annStats|cut -f1,2,4"), sep="\t",header=F)
 i1 = which(res[,1]=="Annotation")[2]+1
 i2 = dim(res)[1]
@@ -166,7 +166,7 @@ res = res[ i1:i2,]
 tdown = as.numeric(as.character(res[,2]))
 names(tdown) = res[,1]
 names(tdown) = paste(names(tdown)," ",round(tdown/sum(tdown)*100,digits=2),"%",sep="")
-tdown = tdown[tdown>140]
+tdown = tdown[tdown>250]
 pie(sort(tdown), main=,cex=1.7)
 title("acH2az peaks not overlapping Myc peaks", cex.main=2)
 dev.off()
@@ -180,7 +180,7 @@ i2 = dim(res)[1]
 res = res[ i1:i2,]
 tdown = as.numeric(as.character(res[,3]))
 names(tdown) = res[,1]
-tdown = tdown[as.numeric(as.character(res[,2]))>140]
+tdown = tdown[as.numeric(as.character(res[,2]))>250]
 barplot(sort(tdown),las=2,ylim=c(-4,6),ylab="Log2 Enrichment over random genomic background",col="lightblue3",
         cex.axis=2,cex.names=2)
 abline(h=0)
