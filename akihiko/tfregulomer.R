@@ -209,11 +209,11 @@ grep "promoter-TSS" mycTFREGULOME_h2az_peaks.anno|cut -f16|sort|uniq > promoter_
  grep "Intergenic" ach2az_peaks.anno|cut -f16|sort|uniq > Intergenic_ach2az_peaks.genes.txt
  grep "promoter-TSS" ach2az_peaks.anno|cut -f16|sort|uniq> promoter_ach2az_peaks.genes.txt
 #######
-grep "Intergenic" mycTFREGULOME_h2az_peaks.anno|cut -f12|sort|uniq > intergenic_ach2az_+_mycTFREGULOME_peaks.genes.txt
-grep "promoter-TSS" mycTFREGULOME_h2az_peaks.anno|cut -f12|sort|uniq > promoter_ach2az_+_mycTFREGULOME_peaks.genes.txt
+grep "Intergenic" mycTFREGULOME_h2az_peaks.anno|cut -f12|sort|uniq > ENTREZ_intergenic_ach2az_+_mycTFREGULOME_peaks.genes.txt
+grep "promoter-TSS" mycTFREGULOME_h2az_peaks.anno|cut -f12|sort|uniq > ENTREZ_promoter_ach2az_+_mycTFREGULOME_peaks.genes.txt
 
- grep "Intergenic" ach2az_-_mycTFREGULOME_peaks.anno|cut -f12|sort|uniq > intergenic_ach2az_-_mycTFREGULOME_peaks.genes.txt
- grep "promoter-TSS" ach2az_-_mycTFREGULOME_peaks.anno|cut -f12|sort|uniq > promoter_ach2az_-_mycTFREGULOME_peaks.genes.txt
+ grep "Intergenic" ach2az_-_mycTFREGULOME_peaks.anno|cut -f12|sort|uniq > ENTREZ_intergenic_ach2az_-_mycTFREGULOME_peaks.genes.txt
+ grep "promoter-TSS" ach2az_-_mycTFREGULOME_peaks.anno|cut -f12|sort|uniq > ENTREZ_promoter_ach2az_-_mycTFREGULOME_peaks.genes.txt
 
- grep "Intergenic" ach2az_peaks.anno|cut -f12|sort|uniq > intergenic_ach2az_peaks.genes.txt
- grep "promoter-TSS" ach2az_peaks.anno|cut -f12|sort|uniq> promoter_ach2az_peaks.genes.txt
+ grep "Intergenic" ach2az_peaks.anno|cut -f12|sort|uniq > ENTREZ_intergenic_ach2az_peaks.genes.txt
+ grep "promoter-TSS" ach2az_peaks.anno|cut -f12|sort|uniq> ENTREZ_promoter_ach2az_peaks.genes.txt
