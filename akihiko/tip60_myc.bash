@@ -1,6 +1,8 @@
 # getting log2 ratio
 
 scp -P 60035 root@172.18.149.78:/root/akihiko/oriFiles/*bw ./
+scp -P 60035 root@172.18.149.78:/root/akihiko/tip60_myc/*intergenic.bed ./
+scp -P 60035 root@172.18.149.78:/root/akihiko/tip60_myc/*promoter.bed ./
 
 /home/rtm/anaconda2/bin/conda install -c bioconda deeptools
 
@@ -31,8 +33,279 @@ annotatePeaks.pl tip60_-_myc.bed mm10 -annStats tip60_-_myc.annStats > tip60_-_m
  grep "Intergenic" tip60_-_myc.anno|cut -f2,3,4,10,16 > tip60_-_myc_intergenic.bed
  grep "promoter-TSS" tip60_-_myc.anno|cut -f2,3,4,10,16 > tip60_-_myc_promoter.bed
 ############################################################################################################################
+# AcH2
+computeMatrix reference-point \
+-S \
+actH2AZ_neg_R1.bw \
+actH2AZ_pos_R1.bw \
+-R tip60_myc_intergenic.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out ach2_int_+.mat
 
+computeMatrix reference-point \
+-S \
+actH2AZ_neg_R1.bw \
+actH2AZ_pos_R1.bw \
+-R tip60_-_myc_intergenic.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out ach2_int_-.mat
 
+computeMatrix reference-point \
+-S \
+actH2AZ_neg_R1.bw \
+actH2AZ_pos_R1.bw \
+-R tip60_myc_promoter.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out ach2_pro_+.mat
+
+computeMatrix reference-point \
+-S \
+actH2AZ_neg_R1.bw \
+actH2AZ_pos_R1.bw \
+-R tip60_-_myc_promoter.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out ach2_pro_-.mat
+
+# H2
+
+computeMatrix reference-point \
+-S \
+H2AZ_neg_R1.bw \
+H2AZ_pos_R1.bw \
+-R tip60_myc_intergenic.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out h2_int_+.mat
+
+computeMatrix reference-point \
+-S \
+H2AZ_neg_R1.bw \
+H2AZ_pos_R1.bw \
+-R tip60_-_myc_intergenic.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out h2_int_-.mat
+
+computeMatrix reference-point \
+-S \
+H2AZ_neg_R1.bw \
+H2AZ_pos_R1.bw \
+-R tip60_myc_promoter.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out h2_pro_+.mat
+
+computeMatrix reference-point \
+-S \
+H2AZ_neg_R1.bw \
+H2AZ_pos_R1.bw \
+-R tip60_-_myc_promoter.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out h2_pro_-.mat
+
+# log2ratio
+
+computeMatrix reference-point \
+-S \
+NEG_ac_h2_log2ratio.bw \
+POS_ac_h2_log2ratio.bw \
+-R tip60_myc_intergenic.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out lr_int_+.mat
+
+computeMatrix reference-point \
+-S \
+NEG_ac_h2_log2ratio.bw \
+POS_ac_h2_log2ratio.bw \
+-R tip60_-_myc_intergenic.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out lr_int_-.mat
+
+computeMatrix reference-point \
+-S \
+NEG_ac_h2_log2ratio.bw \
+POS_ac_h2_log2ratio.bw \
+-R tip60_myc_promoter.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out lr_pro_+.mat
+
+computeMatrix reference-point \
+-S \
+NEG_ac_h2_log2ratio.bw \
+POS_ac_h2_log2ratio.bw \
+-R tip60_-_myc_promoter.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out lr_pro_-.mat
+
+# ratio
+
+computeMatrix reference-point \
+-S \
+NEG_ac_h2_ratio.bw \
+POS_ac_h2_ratio.bw \
+-R tip60_myc_intergenic.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out rt_int_+.mat
+
+computeMatrix reference-point \
+-S \
+NEG_ac_h2_ratio.bw \
+POS_ac_h2_ratio.bw \
+-R tip60_-_myc_intergenic.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out rt_int_-.mat
+
+computeMatrix reference-point \
+-S \
+NEG_ac_h2_ratio.bw \
+POS_ac_h2_ratio.bw \
+-R tip60_myc_promoter.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out rt_pro_+.mat
+
+computeMatrix reference-point \
+-S \
+NEG_ac_h2_ratio.bw \
+POS_ac_h2_ratio.bw \
+-R tip60_-_myc_promoter.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out rt_pro_-.mat
+
+# H3K27ac
+computeMatrix reference-point \
+-S \
+H3K27ac_neg_R1.bw \
+H3K27ac_pos_R1.bw \
+-R tip60_myc_intergenic.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out ac_int_+.mat
+
+computeMatrix reference-point \
+-S \
+H3K27ac_neg_R1.bw \
+H3K27ac_pos_R1.bw \
+-R tip60_-_myc_intergenic.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out ac_int_-.mat
+
+computeMatrix reference-point \
+-S \
+H3K27ac_neg_R1.bw \
+H3K27ac_pos_R1.bw \
+-R tip60_myc_promoter.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out ac_pro_+.mat
+
+computeMatrix reference-point \
+-S \
+H3K27ac_neg_R1.bw \
+H3K27ac_pos_R1.bw \
+-R tip60_-_myc_promoter.bed --referencePoint center \
+--sortRegions descend -bs 20 -a 3000 -b 3000 -p max -out ac_pro_-.mat
+ ############################################################################################################################
+ach2_int_-.mat
+ach2_int_+.mat
+ach2_pro_-.mat
+ach2_pro_+.mat
+
+ac_int_-.mat
+ac_int_+.mat
+ac_pro_-.mat
+ac_pro_+.mat
+
+h2_int_-.mat
+h2_int_+.mat
+h2_pro_-.mat
+h2_pro_+.mat
+
+lr_int_-.mat
+lr_int_+.mat
+lr_pro_-.mat
+lr_pro_+.mat
+
+rt_int_-.mat
+rt_int_+.mat
+rt_pro_-.mat
+rt_pro_+.mat
+#
+plotProfile  --colors 'Blue' 'Red' --regionsLabel "AcH2AZ" \
+-m ach2_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Intergenic" \
+-out ach2_int_+.pdf
+
+plotProfile --colors 'Blue' 'Red' --regionsLabel "AcH2AZ" \
+-m ach2_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Intergenic" \
+-out ach2_int_-.pdf
+#
+plotProfile --colors 'Blue' 'Red' --regionsLabel "AcH2AZ" \
+-m ach2_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Promoter" \
+-out ach2_pro_+.pdf
+
+plotProfile --colors 'Blue' 'Red' --regionsLabel "AcH2AZ" \
+-m ach2_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Promoter" \
+-out ach2_pro_-.pdf
+#######################
+plotProfile  --colors 'Blue' 'Red' --regionsLabel "H2AZ" \
+-m h2_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Intergenic" \
+-out h2_int_+.pdf
+
+plotProfile --colors 'Blue' 'Red' --regionsLabel "H2AZ" \
+-m h2_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Intergenic" \
+-out h2_int_-.pdf
+#
+plotProfile --colors 'Blue' 'Red' --regionsLabel "H2AZ" \
+-m h2_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Promoter" \
+-out h2_pro_+.pdf
+
+plotProfile --colors 'Blue' 'Red' --regionsLabel "H2AZ" \
+-m h2_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Promoter" \
+-out h2_pro_-.pdf
+#######################
+plotProfile  --colors 'Blue' 'Red' --regionsLabel "AcH3K27" \
+-m ac_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Intergenic" \
+-out ac_int_+.pdf
+
+plotProfile --colors 'Blue' 'Red' --regionsLabel "AcH3K27" \
+-m ac_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Intergenic" \
+-out ac_int_-.pdf
+#
+plotProfile --colors 'Blue' 'Red' --regionsLabel "AcH3K27" \
+-m ac_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Promoter" \
+-out ac_pro_+.pdf
+
+plotProfile --colors 'Blue' 'Red' --regionsLabel "AcH3K27" \
+-m ac_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Promoter" \
+-out ac_pro_-.pdf
+#
+#######################
+plotProfile  --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ log2Ratio" \
+-m lr_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Intergenic" \
+-out lr_int_+.pdf
+
+plotProfile --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ log2Ratio" \
+-m lr_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Intergenic" \
+-out lr_int_-.pdf
+#
+plotProfile --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ log2Ratio" \
+-m lr_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Promoter" \
+-out lr_pro_+.pdf
+
+plotProfile --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ log2Ratio" \
+-m lr_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Promoter" \
+-out lr_pro_-.pdf
+#######################
+plotProfile  --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ Ratio" \
+-m rt_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Intergenic" \
+-out rt_int_+.pdf
+
+plotProfile --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ Ratio" \
+-m rt_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Intergenic" \
+-out rt_int_-.pdf
+#
+plotProfile --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ Ratio" \
+-m rt_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Promoter" \
+-out rt_pro_+.pdf
+
+plotProfile --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ Ratio" \
+-m rt_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+ --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Promoter" \
+-out rt_pro_-.pdf
 
  ############################################################################################################################
  
@@ -94,21 +367,17 @@ names(geneEntrez) <- c("Dis.TIP60+Myc","Pro.TIP60+Myc",
 
 x=compareCluster(geneEntrez, fun='enrichGO',
                  OrgDb         = org.Mm.eg.db,
-                 ont           = "BP")
+                 ont           = "BP",qvalueCutoff = 0.1,pvalueCutoff = 1)
 pdf("dotplot.pdf",height=10,width=10)
 dotplot(x, showCategory=15, includeAll=FALSE)
 dev.off()
 
-x=compareCluster(geneEntrez, fun='enrichPathway',
-                 OrgDb         = org.Mm.eg.db,
-                 ont           = "BP")
+x=compareCluster(geneEntrez, fun="enrichPathway", organism = "mouse",qvalueCutoff = 0.1,pvalueCutoff = 1)
 pdf("dotplot_enrichPathway.pdf",height=10,width=10)
 dotplot(x, showCategory=15, includeAll=FALSE)
 dev.off()
 
-x=compareCluster(geneEntrez, fun='enrichKEGG',
-                 OrgDb         = org.Mm.eg.db,
-                 ont           = "BP")
+x=compareCluster(geneEntrez, fun="enrichKEGG", organism = "mouse", qvalueCutoff = 0.1,pvalueCutoff = 1)
 pdf("dotplot_enrichKEGG.pdf",height=10,width=10)
 dotplot(x, showCategory=15, includeAll=FALSE)
 dev.off()
