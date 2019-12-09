@@ -383,3 +383,40 @@ dotplot(x, showCategory=15, includeAll=FALSE)
 dev.off()
 
 
+###############################################
+
+genes <- read.table("45_distant_tip60_myc_genes.txt")
+genes <-as.character(genes[,1])
+exp <- read.csv("Tip60_RNAseq_triplicates.csv")
+exp <-exp[exp$Gene %in% genes,]
+exp.sig <- exp[,8:13]
+rownames(exp.sig) <- as.character(exp[,1])
+TIP60KO<-exp[,8:10] #tip60KO
+TIP60WT<-exp[,11:13] #wt
+
+x<-log2(cbind(rowMeans(TIP60WT)+1,rowMeans(TIP60KO)+1))
+colnames(x)<-c("TIP60WT","TIP60KO")
+
+pdf("tip60+myc_distal_genes_exp.pdf")
+boxplot( x)
+dev.off()
+
+
+library(ComplexHeatmap)
+options(scipen=999)
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
+colors <- rev(colorRampPalette( (brewer.pal(9, "RdBu")) )(9))
+options(bitmapType="cairo")
+
+exp.sig<-as.matrix(exp.sig)
+exp.sig<-exp.sig[apply(exp.sig,1,sd)!=0,]
+
+exp.sig.rm<-exp.sig-rowMeans(exp.sig)
+
+pdf("TIP60+MYC_intergenic_associated_genes_expression.pdf",width=9)
+Heatmap(exp.sig.rm,
+show_row_names = TRUE,show_column_names = TRUE,name = "Expression",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+dev.off()
