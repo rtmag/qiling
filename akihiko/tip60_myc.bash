@@ -207,103 +207,103 @@ rt_pro_-.mat
 rt_pro_+.mat
 #
 plotProfile  --colors 'Blue' 'Red' --regionsLabel "AcH2AZ" \
--m ach2_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m ach2_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 35 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Intergenic" \
 -out ach2_int_+.pdf
 
 plotProfile --colors 'Blue' 'Red' --regionsLabel "AcH2AZ" \
--m ach2_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m ach2_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 35 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Intergenic" \
 -out ach2_int_-.pdf
 #
 plotProfile --colors 'Blue' 'Red' --regionsLabel "AcH2AZ" \
--m ach2_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m ach2_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 35 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Promoter" \
 -out ach2_pro_+.pdf
 
 plotProfile --colors 'Blue' 'Red' --regionsLabel "AcH2AZ" \
--m ach2_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m ach2_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 35 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Promoter" \
 -out ach2_pro_-.pdf
 #######################
 plotProfile  --colors 'Blue' 'Red' --regionsLabel "H2AZ" \
--m h2_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m h2_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 5 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Intergenic" \
 -out h2_int_+.pdf
 
 plotProfile --colors 'Blue' 'Red' --regionsLabel "H2AZ" \
--m h2_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m h2_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 5 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Intergenic" \
 -out h2_int_-.pdf
 #
 plotProfile --colors 'Blue' 'Red' --regionsLabel "H2AZ" \
--m h2_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m h2_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 5 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Promoter" \
 -out h2_pro_+.pdf
 
 plotProfile --colors 'Blue' 'Red' --regionsLabel "H2AZ" \
--m h2_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m h2_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 5 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Promoter" \
 -out h2_pro_-.pdf
 #######################
 plotProfile  --colors 'Blue' 'Red' --regionsLabel "AcH3K27" \
--m ac_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m ac_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 35 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Intergenic" \
 -out ac_int_+.pdf
 
 plotProfile --colors 'Blue' 'Red' --regionsLabel "AcH3K27" \
--m ac_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m ac_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 35 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Intergenic" \
 -out ac_int_-.pdf
 #
 plotProfile --colors 'Blue' 'Red' --regionsLabel "AcH3K27" \
--m ac_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m ac_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 35 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Promoter" \
 -out ac_pro_+.pdf
 
 plotProfile --colors 'Blue' 'Red' --regionsLabel "AcH3K27" \
--m ac_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m ac_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 35 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Promoter" \
 -out ac_pro_-.pdf
 #
 #######################
-plotProfile  --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ log2Ratio" \
+plotProfile  --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ log2Ratio" --yMin -0.5 --yMax 3 \
 -m lr_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Intergenic" \
 -out lr_int_+.pdf
 
 plotProfile --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ log2Ratio" \
--m lr_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m lr_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin -0.5 --yMax 3 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Intergenic" \
 -out lr_int_-.pdf
 #
 plotProfile --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ log2Ratio" \
--m lr_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m lr_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin -0.5 --yMax 3 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Promoter" \
 -out lr_pro_+.pdf
 
 plotProfile --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ log2Ratio" \
--m lr_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m lr_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin -0.5 --yMax 3 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Promoter" \
 -out lr_pro_-.pdf
 #######################
 plotProfile  --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ Ratio" \
--m rt_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m rt_int_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 12 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Intergenic" \
 -out rt_int_+.pdf
 
 plotProfile --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ Ratio" \
--m rt_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m rt_int_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 12 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Intergenic" \
 -out rt_int_-.pdf
 #
 plotProfile --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ Ratio" \
--m rt_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m rt_pro_+.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 12 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60+Myc Promoter" \
 -out rt_pro_+.pdf
 
 plotProfile --colors 'Blue' 'Red' --regionsLabel "acH2AZ/H2AZ Ratio" \
--m rt_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" \
+-m rt_pro_-.mat --perGroup --plotHeight 9 --plotWidth 9 --plotTitle "" --yMin 0 --yMax 12 \
  --samplesLabel "TIP60-FF" "TIP60-KO" --refPointLabel "Tip60-Myc Promoter" \
 -out rt_pro_-.pdf
 
