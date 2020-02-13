@@ -19,3 +19,9 @@ exp.log2 = exp.log2[apply(exp.log2,1,sd)!=0,]
 Heatmap(scale(exp.log2),
 show_row_names = TRUE,show_column_names = TRUE,name = "Expression",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
 clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
+
+
+
+Heatmap(scale(exp.log2),
+show_row_names = TRUE,show_column_names = TRUE,name = "Expression",row_dend_reorder = TRUE, column_dend_reorder = TRUE,
+clustering_distance_columns = "pearson", clustering_distance_rows = "pearson")
