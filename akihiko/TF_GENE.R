@@ -48,3 +48,63 @@ plot(dataf$act,dataf$exp,xlab=expression('Log'[2]*paste('acH2AZ/H2AZ Fold Change
        dataf$exp[act$Gene %in% pu1],
       col="red",pch=20)
 dev.off()
+
+#####################################################################################################################################
+library(gplots)
+library(factoextra)
+library(RColorBrewer)
+exp <- read.table("Tip60_actRatio_log2FC.txt",sep="\t",header = T)
+
+tal1<-read.table("TAL1_MEL.txt")
+pu1<-read.table("pu1_GSE58128_Targetgenes.txt")
+tal1 <- toupper(tal1[,1])
+pu1 <- toupper(pu1[,1])
+
+pdf("TAL1_targets_chipseq.pdf")
+plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2AZ/H2AZ Fold Change')),main="Tal1 targets (ChIP-Seq)",
+              ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
+  points(exp$log2RatioChange[exp$Gene %in% tal1],
+       exp$log2FoldChange[exp$Gene %in% tal1],
+      col="red",pch=20)
+
+abline(v=0)
+abline(h=0)
+dev.off()
+
+pdf("PU1_targets_chipseq.pdf")
+plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2AZ/H2AZ Fold Change')),main="PU1 targets (ChIP-Seq)",
+              ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
+  points(exp$log2RatioChange[exp$Gene %in% pu1],
+       exp$log2FoldChange[exp$Gene %in% pu1],
+      col="red",pch=20)
+
+abline(v=0)
+abline(h=0)
+dev.off()
+
+spi1<-read.table("Spi1_targets.mouse.tsv")
+gata2<-read.table("Gata2_targets.mouse.tsv")
+spi1 <- toupper(spi1[,2])
+gata2 <- toupper(gata2[,2])
+
+pdf("spi1_targets_trrust.pdf")
+plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2AZ/H2AZ Fold Change')),main="PU1 targets (TRRUST)",
+              ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
+  points(exp$log2RatioChange[exp$Gene %in% spi1],
+       exp$log2FoldChange[exp$Gene %in% spi1],
+      col="red",pch=20)
+
+abline(v=0)
+abline(h=0)
+dev.off()
+
+pdf("GATA2_targets_trrust.pdf")
+plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2AZ/H2AZ Fold Change')),main="GATA2 targets (TRRUST)",
+              ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
+  points(exp$log2RatioChange[exp$Gene %in% gata2],
+       exp$log2FoldChange[exp$Gene %in% gata2],
+      col="red",pch=20)
+
+abline(v=0)
+abline(h=0)
+dev.off()
