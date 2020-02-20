@@ -116,7 +116,7 @@ plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2
               ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
   points(exp$log2RatioChange[exp$group=="myc"],
        exp$log2FoldChange[exp$group=="myc"],
-      col="red",pch=20)
+      col=alpha("red",.5),pch=20)
 
 abline(v=0)
 abline(h=0)
@@ -125,7 +125,7 @@ plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2
               ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
   points(exp$log2RatioChange[exp$Gene %in% tal1],
        exp$log2FoldChange[exp$Gene %in% tal1],
-      col="red",pch=20)
+      col=alpha("darkgreen",.5),pch=20)
 
 abline(v=0)
 abline(h=0)
@@ -134,10 +134,15 @@ plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2
               ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
   points(exp$log2RatioChange[exp$Gene %in% pu1],
        exp$log2FoldChange[exp$Gene %in% pu1],
-      col="red",pch=20)
+      col=alpha("blue",.5),pch=20)
 
 abline(v=0)
 abline(h=0)
+dev.off()
+
+pdf("legends_targets.pdf")
+plot.new()
+legend("center",  legend=c("Myc targets","Tal1 targets","Pu.1 targets"), fill=c('red','darkgreen','blue'), bty = "n")
 dev.off()
 ############################################
 
