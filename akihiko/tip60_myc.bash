@@ -325,7 +325,7 @@ title("TIP60 peaks overlapping Myc peaks", cex.main=2)
 dev.off()
 
 #  TIP60 - MYC
-pdf("pie_dist_tip60_-_myc.pdf",width=12)
+pdf("pie_dist_tip60.pdf",width=12)
 res=read.table(pipe("more tip60_-_myc.annStats|cut -f1,2,4"), sep="\t",header=F)
 i1 = which(res[,1]=="Annotation")[2]+1
 i2 = dim(res)[1]
@@ -333,9 +333,13 @@ res = res[ i1:i2,]
 tdown = as.numeric(as.character(res[,2]))
 names(tdown) = res[,1]
 names(tdown) = paste(names(tdown)," ",round(tdown/sum(tdown)*100,digits=2),"%",sep="")
+others = tdown[tdown<=100]
+others = sum(others)
+names(others) = "Other 2.38%"
 tdown = tdown[tdown>100]
+tdown = c(tdown,others)
 pie(sort(tdown), main=,cex=1.7)
-title("TIP60 peaks not overlapping Myc peaks", cex.main=2)
+title("TIP60 (4,347 peaks)", cex.main=2)
 dev.off()
 ############################################################################################################################
 library(clusterProfiler)
