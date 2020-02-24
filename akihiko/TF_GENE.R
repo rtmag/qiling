@@ -146,3 +146,42 @@ legend("center",  legend=c("Myc targets","Tal1 targets","Pu.1 targets"), fill=c(
 dev.off()
 ############################################
 
+legend("topright", paste(length(which(dds_res$log2FoldChange>1 & dds_res$padj<0.05))), bty="n") 
+
+
+
+
+pdf("tf_targets.pdf",height=2.5)
+par(mfrow=c(1,3))
+plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2AZ/H2AZ Fold Change')),main="Myc targets",
+              ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
+  points(exp$log2RatioChange[exp$group=="myc"],
+       exp$log2FoldChange[exp$group=="myc"],
+      col=alpha("red",.5),pch=20)
+myc_n = 
+legend("topright",length(which(exp$log2RatioChange[exp$group=="myc"]>0 & exp$log2FoldChange[exp$group=="myc"]>0))/myc_n, bty="n") 
+legend("topright",length(which(exp$log2RatioChange[exp$group=="myc"]<0 & exp$log2FoldChange[exp$group=="myc"]<0))/myc_n, bty="n") 
+legend("topright",length(which(exp$log2RatioChange[exp$group=="myc"]<0 & exp$log2FoldChange[exp$group=="myc"]>0))/myc_n, bty="n") 
+legend("topright",length(which(exp$log2RatioChange[exp$group=="myc"]>0 & exp$log2FoldChange[exp$group=="myc"]<0))/myc_n, bty="n") 
+
+abline(v=0)
+abline(h=0)
+
+plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2AZ/H2AZ Fold Change')),main="Tal1 targets",
+              ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
+  points(exp$log2RatioChange[exp$Gene %in% tal1],
+       exp$log2FoldChange[exp$Gene %in% tal1],
+      col=alpha("darkgreen",.5),pch=20)
+
+abline(v=0)
+abline(h=0)
+
+plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2AZ/H2AZ Fold Change')),main="Pu.1 targets",
+              ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
+  points(exp$log2RatioChange[exp$Gene %in% pu1],
+       exp$log2FoldChange[exp$Gene %in% pu1],
+      col=alpha("blue",.5),pch=20)
+
+abline(v=0)
+abline(h=0)
+dev.off()
