@@ -146,11 +146,6 @@ legend("center",  legend=c("Myc targets","Tal1 targets","Pu.1 targets"), fill=c(
 dev.off()
 ############################################
 
-legend("topright",length(which(exp$log2RatioChange[exp$group=="myc"]>0 & exp$log2FoldChange[exp$group=="myc"]>0))/myc_n, bty="n") 
-
-
-
-
 pdf("tf_targets.pdf",height=2.5)
 par(mfrow=c(1,3))
 plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2AZ/H2AZ Fold Change')),main="Myc targets",
@@ -192,7 +187,7 @@ plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2
   points(exp$log2RatioChange[exp$Gene %in% pu1],
        exp$log2FoldChange[exp$Gene %in% pu1],
       col=alpha("blue",.5),pch=20)
-Ngn = length(tal1)
+Ngn = length(pu1)
 tr = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% pu1]>0 & exp$log2FoldChange[exp$Gene %in% pu1]>0))/Ngn*100,digits=2),"%")
 tl = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% pu1]<0 & exp$log2FoldChange[exp$Gene %in% pu1]>0))/Ngn*100,digits=2),"%")
 br = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% pu1]>0 & exp$log2FoldChange[exp$Gene %in% pu1]<0))/Ngn*100,digits=2),"%")
