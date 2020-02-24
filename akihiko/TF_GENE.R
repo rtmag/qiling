@@ -169,6 +169,64 @@ plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2
               ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
   points(exp$log2RatioChange[exp$Gene %in% tal1],
        exp$log2FoldChange[exp$Gene %in% tal1],
+      col=alpha("red",.5),pch=20)
+Ngn = length(tal1)
+tr = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% tal1]>0 & exp$log2FoldChange[exp$Gene %in% tal1]>0))/Ngn*100,digits=2),"%")
+tl = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% tal1]<0 & exp$log2FoldChange[exp$Gene %in% tal1]>0))/Ngn*100,digits=2),"%")
+br = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% tal1]>0 & exp$log2FoldChange[exp$Gene %in% tal1]<0))/Ngn*100,digits=2),"%")
+bl = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% tal1]<0 & exp$log2FoldChange[exp$Gene %in% tal1]<0))/Ngn*100,digits=2),"%")
+legend("topright",tr, bty="n")
+legend("topleft",tl, bty="n")
+legend("bottomright",br, bty="n")
+legend("bottomleft",bl, bty="n")
+abline(v=0)
+abline(h=0)
+
+plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2AZ/H2AZ Fold Change')),main="Pu.1 targets",
+              ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
+  points(exp$log2RatioChange[exp$Gene %in% pu1],
+       exp$log2FoldChange[exp$Gene %in% pu1],
+      col=alpha("red",.5),pch=20)
+Ngn = length(pu1)
+tr = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% pu1]>0 & exp$log2FoldChange[exp$Gene %in% pu1]>0))/Ngn*100,digits=2),"%")
+tl = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% pu1]<0 & exp$log2FoldChange[exp$Gene %in% pu1]>0))/Ngn*100,digits=2),"%")
+br = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% pu1]>0 & exp$log2FoldChange[exp$Gene %in% pu1]<0))/Ngn*100,digits=2),"%")
+bl = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% pu1]<0 & exp$log2FoldChange[exp$Gene %in% pu1]<0))/Ngn*100,digits=2),"%")
+legend("topright",tr, bty="n")
+legend("topleft",tl, bty="n")
+legend("bottomright",br, bty="n")
+legend("bottomleft",bl, bty="n")
+abline(v=0)
+abline(h=0)
+dev.off()
+
+####################################################################################################################################
+####################################################################################################################################
+####################################################################################################################################
+####################################################################################################################################
+pdf("tf_targets_colors.pdf",height=2.5)
+par(mfrow=c(1,3))
+plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2AZ/H2AZ Fold Change')),main="Myc targets",
+              ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
+  points(exp$log2RatioChange[exp$group=="myc"],
+       exp$log2FoldChange[exp$group=="myc"],
+      col=alpha("red",.5),pch=20)
+Ngn = sum(exp$group=="myc")
+tr = paste(round(length(which(exp$log2RatioChange[exp$group=="myc"]>0 & exp$log2FoldChange[exp$group=="myc"]>0))/Ngn*100,digits=2),"%")
+tl = paste(round(length(which(exp$log2RatioChange[exp$group=="myc"]<0 & exp$log2FoldChange[exp$group=="myc"]>0))/Ngn*100,digits=2),"%")
+br = paste(round(length(which(exp$log2RatioChange[exp$group=="myc"]>0 & exp$log2FoldChange[exp$group=="myc"]<0))/Ngn*100,digits=2),"%")
+bl = paste(round(length(which(exp$log2RatioChange[exp$group=="myc"]<0 & exp$log2FoldChange[exp$group=="myc"]<0))/Ngn*100,digits=2),"%")
+legend("topright",tr, bty="n") 
+legend("topleft",tl, bty="n") 
+legend("bottomright",br, bty="n") 
+legend("bottomleft",bl, bty="n") 
+abline(v=0)
+abline(h=0)
+
+plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2AZ/H2AZ Fold Change')),main="Tal1 targets",
+              ylab=expression('Log'[2]*paste('RNA expression Fold Change')),col=alpha("grey",.5),pch=20 )
+  points(exp$log2RatioChange[exp$Gene %in% tal1],
+       exp$log2FoldChange[exp$Gene %in% tal1],
       col=alpha("darkgreen",.5),pch=20)
 Ngn = length(tal1)
 tr = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% tal1]>0 & exp$log2FoldChange[exp$Gene %in% tal1]>0))/Ngn*100,digits=2),"%")
