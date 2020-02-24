@@ -146,7 +146,7 @@ legend("center",  legend=c("Myc targets","Tal1 targets","Pu.1 targets"), fill=c(
 dev.off()
 ############################################
 
-legend("topright", paste(length(which(dds_res$log2FoldChange>1 & dds_res$padj<0.05))), bty="n") 
+legend("topright",length(which(exp$log2RatioChange[exp$group=="myc"]>0 & exp$log2FoldChange[exp$group=="myc"]>0))/myc_n, bty="n") 
 
 
 
@@ -158,12 +158,15 @@ plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2
   points(exp$log2RatioChange[exp$group=="myc"],
        exp$log2FoldChange[exp$group=="myc"],
       col=alpha("red",.5),pch=20)
-myc_n = 
-legend("topright",length(which(exp$log2RatioChange[exp$group=="myc"]>0 & exp$log2FoldChange[exp$group=="myc"]>0))/myc_n, bty="n") 
-legend("topright",length(which(exp$log2RatioChange[exp$group=="myc"]<0 & exp$log2FoldChange[exp$group=="myc"]<0))/myc_n, bty="n") 
-legend("topright",length(which(exp$log2RatioChange[exp$group=="myc"]<0 & exp$log2FoldChange[exp$group=="myc"]>0))/myc_n, bty="n") 
-legend("topright",length(which(exp$log2RatioChange[exp$group=="myc"]>0 & exp$log2FoldChange[exp$group=="myc"]<0))/myc_n, bty="n") 
-
+Ngn = sum(exp$group=="myc")
+tr = paste(round(length(which(exp$log2RatioChange[exp$group=="myc"]>0 & exp$log2FoldChange[exp$group=="myc"]>0))/Ngn*100,digits=2),"%")
+tl = paste(round(length(which(exp$log2RatioChange[exp$group=="myc"]<0 & exp$log2FoldChange[exp$group=="myc"]>0))/Ngn*100,digits=2),"%")
+br = paste(round(length(which(exp$log2RatioChange[exp$group=="myc"]>0 & exp$log2FoldChange[exp$group=="myc"]<0))/Ngn*100,digits=2),"%")
+bl = paste(round(length(which(exp$log2RatioChange[exp$group=="myc"]<0 & exp$log2FoldChange[exp$group=="myc"]<0))/Ngn*100,digits=2),"%")
+legend("topright",tr, bty="n") 
+legend("topleft",tl, bty="n") 
+legend("bottomright",br, bty="n") 
+legend("bottomleft",bl, bty="n") 
 abline(v=0)
 abline(h=0)
 
@@ -172,7 +175,15 @@ plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2
   points(exp$log2RatioChange[exp$Gene %in% tal1],
        exp$log2FoldChange[exp$Gene %in% tal1],
       col=alpha("darkgreen",.5),pch=20)
-
+Ngn = length(tal1)
+tr = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% tal1]>0 & exp$log2FoldChange[exp$Gene %in% tal1]>0))/Ngn*100,digits=2),"%")
+tl = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% tal1]<0 & exp$log2FoldChange[exp$Gene %in% tal1]>0))/Ngn*100,digits=2),"%")
+br = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% tal1]>0 & exp$log2FoldChange[exp$Gene %in% tal1]<0))/Ngn*100,digits=2),"%")
+bl = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% tal1]<0 & exp$log2FoldChange[exp$Gene %in% tal1]<0))/Ngn*100,digits=2),"%")
+legend("topright",tr, bty="n")
+legend("topleft",tl, bty="n")
+legend("bottomright",br, bty="n")
+legend("bottomleft",bl, bty="n")
 abline(v=0)
 abline(h=0)
 
@@ -181,7 +192,15 @@ plot(exp$log2RatioChange,exp$log2FoldChange,xlab=expression('Log'[2]*paste('acH2
   points(exp$log2RatioChange[exp$Gene %in% pu1],
        exp$log2FoldChange[exp$Gene %in% pu1],
       col=alpha("blue",.5),pch=20)
-
+Ngn = length(tal1)
+tr = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% pu1]>0 & exp$log2FoldChange[exp$Gene %in% pu1]>0))/Ngn*100,digits=2),"%")
+tl = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% pu1]<0 & exp$log2FoldChange[exp$Gene %in% pu1]>0))/Ngn*100,digits=2),"%")
+br = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% pu1]>0 & exp$log2FoldChange[exp$Gene %in% pu1]<0))/Ngn*100,digits=2),"%")
+bl = paste(round(length(which(exp$log2RatioChange[exp$Gene %in% pu1]<0 & exp$log2FoldChange[exp$Gene %in% pu1]<0))/Ngn*100,digits=2),"%")
+legend("topright",tr, bty="n")
+legend("topleft",tl, bty="n")
+legend("bottomright",br, bty="n")
+legend("bottomleft",bl, bty="n")
 abline(v=0)
 abline(h=0)
 dev.off()
