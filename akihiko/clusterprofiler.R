@@ -186,7 +186,44 @@ barplot(sort(tdown),las=2,ylim=c(-4,6),ylab="Log2 Enrichment over random genomic
 abline(h=0)
 dev.off()
 
+#########################################################################################################################
+#########################################################################################################################
+library("org.Hs.eg.db")
+
+genes<-read.table("NEW_down_overlap.txt")
+genes<-as.character(genes[,1])
+
+gene.df <- bitr(genes, fromType = "SYMBOL",
+        toType = c("ENSEMBL", "ENTREZID"),
+        OrgDb = org.Hs.eg.db)
+        
+xx <- enrichGO(gene         = gene.df$ENSEMBL,
+                OrgDb         = org.Hs.eg.db,
+                keyType       = 'SYMBOL',
+                ont           = "BP",
+                pAdjustMethod = "BH",
+                pvalueCutoff  = 0.01,
+                qvalueCutoff  = 0.05)
 
 
 
+geneEntrez <- list(genes = gene.df$ENTREZID)
 
+x=compareCluster(geneEntrez, fun='enrichGO',
+                 OrgDb         = org.Hs.eg.db,
+                 ont           = "BP")
+pdf("dotplot_66genes_GO_biologicalProcess.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+
+x=compareCluster(geneEntrez, fun="enrichPathway", organism = "human")
+
+pdf("dotplot_66genes_enrichPathway.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
+
+x=compareCluster(geneEntrez, fun="enrichKEGG", organism = "human")
+
+pdf("dotplot_66genes_enrichKEGG.pdf",height=10,width=10)
+dotplot(x, showCategory=15, includeAll=FALSE)
+dev.off()
